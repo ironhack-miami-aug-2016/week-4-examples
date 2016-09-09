@@ -22,6 +22,16 @@ class TimeEntriesController < ApplicationController
     @time_entry = @project.time_entries.new
   end
 
+  def edit
+    # Input
+    # - params[:project_id]
+    # - params[:id]
+    # Ouput
+    # - The edit form
+    @project = Project.find(params[:project_id])
+    @time_entry = @project.time_entries.find(params[:id])
+  end
+
   def create
     # Input
     # - params[:project_id]
@@ -31,13 +41,37 @@ class TimeEntriesController < ApplicationController
     # 3. save the time entry
     # 4. redirect back project's time entries
     project = Project.find(params[:project_id])
-    time_entry = project.time_entries.new(
-      minutes: params[:time_entry][:minutes],
-      hours: params[:time_entry][:hours],
-      date: params[:time_entry][:date]
-    )
+    time_entry = project.time_entries.new(time_entry_params)
     time_entry.save
 
     redirect_to "/projects/#{project.id}/time_entries"
   end
+
+  def update
+    project = Project.find(params[:project_id])
+    time_entry = project.time_entries.find(params[:id])
+
+    if time_entry.update(time_entry_params)
+      redirect_to "/projects/#{project.id}/time_entries"
+    else
+      redirect_to "/projects/#{project.id}/time_entries/#{time_entry.id}/edit"
+    end
+  end
+
+  private
+
+  def time_entry_params
+    params.require(:time_entry).permit(:hours, :minutes, :date)
+  end
+
 end
+
+
+
+
+
+
+
+
+
+
