@@ -1,0 +1,11 @@
+<h1>Auction Site</h1>
+
+<ul>
+<% @products.each do |product| %>
+  <li>
+    <%= product.title %> -
+    <%= product.description %> -
+    <%= product.deadline %>
+  </li>
+<% end %>
+</ul>
