@@ -25,6 +25,13 @@ class ProductsController < ApplicationController
   end
 
 
+  def show
+    @the_product = Product.find(params[:id])
+
+    render :show
+  end
+
+
 
   private
 
