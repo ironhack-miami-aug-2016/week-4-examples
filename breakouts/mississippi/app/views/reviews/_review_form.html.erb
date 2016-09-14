@@ -1,0 +1,17 @@
+<% if @the_review.errors.any? %>
+  <ul>
+    <% @the_review.errors.full_messages.each do |error_message| %>
+      <li> <%= error_message %> </li>
+    <% end %>
+  </ul>
+<% end %>
+
+
+<%= form_for [@the_product, @the_review] do |f| %>
+  <div>
+    <%= f.label :message %>
+    <%= f.text_area :message %>
+  </div>
+
+  <%= f.button %>
+<% end %>

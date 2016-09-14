@@ -13,6 +13,14 @@
 
 <ul>
   <% @the_product.reviews.each do |the_review| %>
-    <li> <%= the_review.message %> </li>
+    <li>
+      <%= the_review.message %>
+      <%= link_to "Edit", edit_product_review_path(@the_product, the_review) %>
+    </li>
   <% end %>
 </ul>
+
+
+<h4> Add a review </h4>
+
+<%= render "reviews/review_form" %>
