@@ -7,3 +7,12 @@
 <p> <%= @the_product.description %> </p>
 
 <img src="<%= @the_product.image %>">
+
+
+<h4> Reviews </h4>
+
+<ul>
+  <% @the_product.reviews.each do |the_review| %>
+    <li> <%= the_review.message %> </li>
+  <% end %>
+</ul>
