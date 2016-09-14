@@ -4,6 +4,6 @@ Rails.application.routes.draw do
   root to: "static_pages#home"
 
   resources :products, only: [:index, :new, :create, :show] do
-    resources :reviews, only: [:create, :edit, :update]
+    resources :reviews, only: [:create, :edit, :update, :destroy]
   end
 end
